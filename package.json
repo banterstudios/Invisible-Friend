@@ -6,7 +6,12 @@
   "directories": {
     "test": "test"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "cross-env NODE_ENV=development node ./server",
+    "production": "cross-env NODE_ENV=production webpack --progress --color --config webpack.prod.config.js",
+    "test:jest:watch": "jest --watch",
+    "test:jest": "jest"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/banterstudios/Invisible-Friend.git"

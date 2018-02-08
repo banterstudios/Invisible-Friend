@@ -14,7 +14,7 @@ export const getImage = (url = '') => {
 
     img.src = url
 
-    if(img.complete) {
+    if (img.complete) {
       resolve(img)
     }
   })

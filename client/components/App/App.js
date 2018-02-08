@@ -11,6 +11,7 @@ import themeVariables from '../../consts/themes'
 import MainLayout from '../Layouts/Main'
 
 import Home from '../../views/Home'
+import PageNotFound from '../../views/PageNotFound'
 
 export default (props) => {
   return (

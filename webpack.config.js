@@ -26,11 +26,11 @@ const CopyWebpackPluginConfig = new CopyWebpackPlugin([{
 
 module.exports = {
   entry: [
-    'babel-polyfill',
+    'babel-polyfill',                                                                                                                                                                                                                                       
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
-    './client/index.js',
-    './client/styles/index.scss'
+                                    './client/index.js',
+                                    './client/styles/index.scss'
   ],
   output: {
     path: path.join(__dirname, '/build'),

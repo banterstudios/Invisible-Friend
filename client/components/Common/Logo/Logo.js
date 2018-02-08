@@ -3,7 +3,7 @@ import glamorous from 'glamorous'
 import LazyImage from '../../Gui/LazyImage'
 import { logo } from '../../../consts/images'
 import PropTypes from 'prop-types'
-import { checkIfValueIsAllowedOrSetDefault } from 'client/utils/objectUtils'
+import { checkIfValueIsAllowedOrSetDefault } from '../../../utils/objectUtils'
 import Link from '../../Gui/Link'
 
 const allowedModifiers = ['sm', 'md', 'lg']
