@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/FormComponents/TextInput @renders in default state 1`] = `
+<TextInput
+  disabled={false}
+  name="input"
+  onBlur={[Function]}
+  onChange={[Function]}
+  onFocus={[Function]}
+  onInput={[Function]}
+  type="text"
+  value="hello"
+>
+  <glamorous.Div
+    position="relative"
+    width="100%"
+  >
+    <div
+      className="css-4kgshc"
+    >
+      <glamorous(input)
+        disabled={false}
+        name="input"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onInput={[Function]}
+        type="text"
+        value="hello"
+      >
+        <input
+          className="css-1v53l60"
+          disabled={false}
+          name="input"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onInput={[Function]}
+          type="text"
+          value="hello"
+        />
+      </glamorous(input)>
+    </div>
+  </glamorous.Div>
+</TextInput>
+`;

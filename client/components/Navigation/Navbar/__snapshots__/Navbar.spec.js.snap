@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Navigation/Navbar @renders should render correctly 1`] = `
+<Navbar>
+  <glamorous(nav)
+    role="navigation"
+  >
+    <nav
+      className="css-1b5l5ja"
+      role="navigation"
+    />
+  </glamorous(nav)>
+</Navbar>
+`;

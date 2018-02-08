@@ -1,0 +1,16 @@
+{
+  "presets": [
+    ["es2015", {"loose": true, "modules": false}],
+    "react"
+  ],
+    "plugins": [
+    "transform-es2015-destructuring",
+    "transform-object-rest-spread",
+    "transform-runtime",
+    "transform-async-to-generator",
+    "transform-regenerator",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "react-hot-loader/babel"
+  ]
+}

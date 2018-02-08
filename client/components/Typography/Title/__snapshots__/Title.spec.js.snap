@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Typography/Title @renders renders the type h1 if the prop type is passed in 1`] = `<glamorous(h1) />`;
+
+exports[`components/Typography/Title @renders renders the type h2 if the prop type is passed in 1`] = `<glamorous(h2) />`;
+
+exports[`components/Typography/Title @renders renders the type h3 if the prop type is passed in 1`] = `<glamorous(h3) />`;
+
+exports[`components/Typography/Title @renders renders the type h4 if the prop type is passed in 1`] = `<glamorous(h4) />`;
+
+exports[`components/Typography/Title @renders renders the type h5 if the prop type is passed in 1`] = `<glamorous(h5) />`;
+
+exports[`components/Typography/Title @renders renders the type h6 if the prop type is passed in 1`] = `<glamorous(h6) />`;
+
+exports[`components/Typography/Title @renders renders to a default h1 if an incorrect type prop is passed through 1`] = `<glamorous(h1) />`;
+
+exports[`components/Typography/Title @renders should render correctly 1`] = `<glamorous(h1) />`;

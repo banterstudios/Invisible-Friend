@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Common/Header @renders should render correctly 1`] = `
+<glamorous(header)
+  className="header"
+>
+  <glamorous(div)>
+    <Logo
+      modifier="sm"
+    />
+    <Navbar>
+      <NavItem
+        key="ryHJjGEfz"
+      >
+        <withRouter(NavLink)
+          href="/about"
+        >
+          About
+        </withRouter(NavLink)>
+      </NavItem>
+      <NavItem
+        key="BJlByiGNMM"
+      >
+        <withRouter(NavLink)
+          href="/features"
+        >
+          Features
+        </withRouter(NavLink)>
+      </NavItem>
+      <NavItem
+        key="rkZS1jfEMG"
+      >
+        <withRouter(NavLink)
+          href="/faq"
+        >
+          FAQ
+        </withRouter(NavLink)>
+      </NavItem>
+      <NavItem
+        key="H1fr1if4Gf"
+      >
+        <withRouter(NavLink)
+          href="/blog"
+        >
+          Blog
+        </withRouter(NavLink)>
+      </NavItem>
+      <NavItem
+        key="Bk7r1sGVMz"
+      >
+        <withRouter(NavLink)
+          href="/contact"
+        >
+          Contact
+        </withRouter(NavLink)>
+      </NavItem>
+      <NavItem
+        key="ByEH1sMNMM"
+      >
+        <withRouter(NavLink)
+          href="/status"
+        >
+          Status
+        </withRouter(NavLink)>
+      </NavItem>
+    </Navbar>
+  </glamorous(div)>
+</glamorous(header)>
+`;

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Common/Logo @renders should render correctly 1`] = `
+<glamorous(div)
+  modifier="sm"
+>
+  <Link
+    href="/"
+    linkType="route"
+    target="_blank"
+  >
+    <LazyImage
+      bgPos="center"
+      bgRepeat="no-repeat"
+      bgSize="cover"
+      src="/static/assets/images/logo.png"
+      useBgImage={false}
+    />
+  </Link>
+</glamorous(div)>
+`;

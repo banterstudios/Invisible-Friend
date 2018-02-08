@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Animation/FadeSlide @renders should render correctly 1`] = `
+<CSSTransitionGroup
+  transitionAppear={true}
+  transitionAppearTimeout={200}
+  transitionEnter={true}
+  transitionEnterTimeout={200}
+  transitionLeave={true}
+  transitionLeaveTimeout={200}
+  transitionName={
+    Object {
+      "appear": Object {
+        "data-css-ytwes7": "",
+      },
+      "appearActive": Object {
+        "data-css-1ofwe93": "",
+      },
+      "enter": Object {
+        "data-css-ytwes7": "",
+      },
+      "enterActive": Object {
+        "data-css-1ofwe93": "",
+      },
+      "leave": Object {
+        "data-css-th23y3": "",
+      },
+      "leaveActive": Object {
+        "data-css-ymg9ps": "",
+      },
+    }
+  }
+/>
+`;
