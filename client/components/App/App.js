@@ -13,6 +13,8 @@ import MainLayout from '../Layouts/Main'
 import Home from '../../views/Home'
 import PageNotFound from '../../views/PageNotFound'
 
+// Create game route!
+
 export default (props) => {
   return (
     <ThemeProvider theme={themeVariables}>
