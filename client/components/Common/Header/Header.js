@@ -33,15 +33,15 @@ export default class Header extends Component {
       <HeaderWrapper className='header'>
         <FlexWrapper>
           <Logo modifier='sm' />
-            <Navbar>
-              {
-                MAIN_LINKS.map(({ name, link, id }) => (
-                  <NavItem key={id}>
-                    <NavLink href={link}>{name}</NavLink>
-                  </NavItem>
-                ))
-              }
-            </Navbar>
+          <Navbar>
+            {
+              MAIN_LINKS.map(({ name, link, id }) => (
+                <NavItem key={id}>
+                  <NavLink href={link}>{name}</NavLink>
+                </NavItem>
+              ))
+            }
+          </Navbar>
         </FlexWrapper>
       </HeaderWrapper>
     )

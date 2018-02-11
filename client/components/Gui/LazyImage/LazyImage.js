@@ -95,8 +95,8 @@ export default class LazyImage extends Component {
     }
 
     this.imagePromise = getImage(src)
-    .then(this.handleImageLoad)
-    .catch(this.handleImageError)
+      .then(this.handleImageLoad)
+      .catch(this.handleImageError)
   }
 
   shouldComponentUpdate ({ isVisible }, { loaded }) {
@@ -136,16 +136,16 @@ export default class LazyImage extends Component {
         <Fade isActive={loaded}>
           {
             useBgImage
-            ? (
-              <BgImage bgImage={src} bgPos={bgPos} bgSize={bgSize} bgRepeat={bgRepeat} {...rest}>
-                { children }
-              </BgImage>
-            )
-            : (
-              <Image src={src} alt={alt} {...rest}>
-                { children }
-              </Image>
-            )
+              ? (
+                <BgImage bgImage={src} bgPos={bgPos} bgSize={bgSize} bgRepeat={bgRepeat} {...rest}>
+                  { children }
+                </BgImage>
+              )
+              : (
+                <Image src={src} alt={alt} {...rest}>
+                  { children }
+                </Image>
+              )
           }
         </Fade>
       </ImageContainer>

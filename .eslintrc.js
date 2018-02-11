@@ -14,7 +14,7 @@ module.exports = {
     "es6": true,
     "browser": true,
     "commonjs": true,
-    jest: true
+    "jest": true
   },
   "parser": "babel-eslint",
   "parserOptions": {
@@ -24,6 +24,7 @@ module.exports = {
     }
   },
   "rules": {
+    "strict": OFF,
     "react/jsx-uses-react": ERROR,
     "react/jsx-uses-vars": ERROR,
     "no-useless-constructor": OFF,
