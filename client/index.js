@@ -31,6 +31,7 @@ renderApp(Router)
 
 if (module.hot) {
   module.hot.accept('./config/Router', () => {
-    renderApp(Router)
+    const NewRouter = require('./config/Router').default
+    renderApp(NewRouter)
   })
 }

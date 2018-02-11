@@ -1,0 +1,3 @@
+export {
+  handleFiles
+} from './fileUtils'

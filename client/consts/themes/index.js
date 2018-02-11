@@ -1,6 +1,7 @@
 const COLORS = require('./colors')
 const TYPOG = require('./typography')
 const BREAKPOINTS = require('./breakpoints')
+const { rgba } = require('polished')
 
 module.exports = {
   // Fonts
@@ -58,6 +59,10 @@ module.exports = {
   // Cards
   primaryCardBorderColor: COLORS.sandyTaupe,
   primaryCardBg: COLORS.darkGunMetal,
+
+  // Drop Zones
+  dropZoneBorderColor: COLORS.carrotOrange,
+  dropZoneActiveBgColor: rgba(COLORS.carrotOrange, 0.2),
 
   // font size
   fontSizeTitle: '45px',
