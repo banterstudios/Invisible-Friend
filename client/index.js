@@ -6,17 +6,12 @@ import Router from './config/Router'
 
 import { queryById } from './utils/domUtils'
 
-import injectTapEventPlugin from 'react-tap-event-plugin'
-
 import configureStyles from './config/configureStyles'
 
 import { AppContainer } from 'react-hot-loader'
 
 // rehydrate glamor ids
 configureStyles()
-
-// Allow for tap events
-injectTapEventPlugin()
 
 const renderApp = (Component) => {
   render(
