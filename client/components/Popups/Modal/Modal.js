@@ -21,14 +21,14 @@ const Frame = glamorous.div(({ theme: { modalZIndex } }) => ({
   alignItems: 'center'
 }))
 
-const ContentWrapper = glamorous.div(({ size, theme: { SIZE_XS_MAX } }) => {
+const ContentWrapper = glamorous.div(({ size, theme: { mobileQuery } }) => {
   const desktopWidth = (size === 'sm') ? '375px' : (size === 'md') ? '480px' : '100%'
   const mobileWidth = '100%'
 
   return {
     position: 'relative',
     width: desktopWidth,
-    [`@media all and (max-width: ${SIZE_XS_MAX}px)`]: {
+    [mobileQuery]: {
       width: mobileWidth
     }
   }
@@ -80,7 +80,7 @@ export default class Modal extends Component {
     const { open, children, onClick, size } = this.props
 
     return (
-      <Frame>
+      <Frame className='frame'>
         <Fade isActive={open}>
           <Overlay onClick={onClick} />
           <ContentWrapper size={size}>

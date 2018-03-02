@@ -11,7 +11,6 @@ const Container = glamorous.div(({ disabled }) => ({
   position: 'relative',
   width: '100%',
   height: 'auto',
-  padding: '10px',
   opacity: (disabled ? 0.4 : 1),
   transition: 'opacity 0.4s ease-out'
 }))
@@ -50,6 +49,10 @@ export default class DropZone extends PureComponent {
     onDrop: PropTypes.func,
     onFileSuccess: PropTypes.func,
     onFileError: PropTypes.func
+  }
+
+  static defaultProps = {
+    title: 'Drop here'
   }
 
   constructor (props) {
@@ -135,7 +138,7 @@ export default class DropZone extends PureComponent {
   }
 
   render () {
-    const { disabled } = this.props
+    const { disabled, title } = this.props
     const { isDragOver } = this.state
 
     return (
@@ -155,8 +158,8 @@ export default class DropZone extends PureComponent {
             <LazyImage src={uploadImg} />
           </Div>
 
-          <Title type='h2'>
-            Drop here
+          <Title type='h2' css={{ textAlign: 'center' }}>
+            {title}
           </Title>
         </DropMat>
       </Container>

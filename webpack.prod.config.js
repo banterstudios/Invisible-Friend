@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const SCSSVars = require(path.resolve(__dirname, 'client/consts/themes/index.js'))
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: path.join(__dirname, '/server/views/index.handlebars'),
@@ -28,6 +29,14 @@ const CopyWebpackPluginConfig = new CopyWebpackPlugin([{
   from: 'client/assets/images/',
   to: 'assets/images/'
 }])
+
+const filteredScssVars = Object.entries(SCSSVars).reduce((obj, [key, value]) => {
+  if (!key.includes('Query')) {
+    obj[key] = value
+  }
+
+  return obj
+}, {})
 
 module.exports = {
   entry: [
@@ -68,9 +77,8 @@ module.exports = {
             {
               loader: '@epegzz/sass-vars-loader',
               options: {
-                files: [
-                  path.resolve(__dirname, 'client/consts/themes/index.js')
-                ]
+                syntax: 'scss',
+                vars: filteredScssVars
               }
             }
           ]

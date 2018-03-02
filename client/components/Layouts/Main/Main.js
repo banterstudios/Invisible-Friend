@@ -9,7 +9,7 @@ const Content = glamorous.div(({ theme: { headerHeight } }) => ({
 }))
 
 export default class Main extends Component {
-  static PropTypes = {
+  static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.element,
       PropTypes.node

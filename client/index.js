@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render } from 'react-dom'
+import { hydrate } from 'react-dom'
 
 import Router from './config/Router'
 
@@ -14,7 +14,7 @@ import { AppContainer } from 'react-hot-loader'
 configureStyles()
 
 const renderApp = (Component) => {
-  render(
+  hydrate(
     <AppContainer warnings={false}>
       <Component />
     </AppContainer>,

@@ -31,7 +31,7 @@ const BgImage = glamorous.div(({ bgSize, bgPos, bgRepeat, bgImage }) => ({
 
 @inView({ once: true })
 export default class LazyImage extends Component {
-  static PropTypes = {
+  static propTypes = {
     src: PropTypes.string,
     useBgImage: PropTypes.bool,
     alt: PropTypes.string,

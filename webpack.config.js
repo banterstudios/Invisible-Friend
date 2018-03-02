@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
+const SCSSVars = require(path.resolve(__dirname, 'client/consts/themes/index.js'))
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: path.join(__dirname, '/server/views/index.handlebars'),
@@ -24,6 +25,14 @@ const CopyWebpackPluginConfig = new CopyWebpackPlugin([{
   from: 'client/assets/fonts/',
   to: 'assets/fonts/'
 }])
+
+const filteredScssVars = Object.entries(SCSSVars).reduce((obj, [key, value]) => {
+  if (!key.includes('Query')) {
+    obj[key] = value
+  }
+
+  return obj
+}, {})
 
 module.exports = {
   entry: [
@@ -72,9 +81,8 @@ module.exports = {
             {
               loader: '@epegzz/sass-vars-loader',
               options: {
-                files: [
-                  path.resolve(__dirname, 'client/consts/themes/index.js')
-                ]
+                syntax: 'scss',
+                vars: filteredScssVars
               }
             }
           ]
