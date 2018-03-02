@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -62,14 +63,22 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'postcss', 'sass', {
-          loader: '@epegzz/sass-vars-loader',
-          options: {
-            files: [
-              path.resolve(__dirname, 'client/consts/themes/index.js')
-            ]
-          }
-        }]
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader?-autoprefixer&sourceMap&minimize',
+            'postcss-loader',
+            'sass-loader?sourceMap',
+            {
+              loader: '@epegzz/sass-vars-loader',
+              options: {
+                files: [
+                  path.resolve(__dirname, 'client/consts/themes/index.js')
+                ]
+              }
+            }
+          ]
+        })
       },
       {
         test: /\.css$/,
@@ -92,6 +101,7 @@ module.exports = {
     HTMLWebpackPluginConfig,
     HTMLWebpackHardDiskPlugin,
     CopyWebpackPluginConfig,
+    new ExtractTextPlugin('css/[name].css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
       'Promise': 'es6-promise',

@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import glamorous from 'glamorous'
+import glamorous, { Div } from 'glamorous'
 import Title from '../../Typography/Title'
 import { handleFiles } from '../../../utils/fileUtils'
-import { error as consoleError, log as consoleLog } from '../../../utils/log'
+import { error as consoleError } from '../../../utils/log'
+import { upload as uploadImg } from '../../../consts/images'
+import LazyImage from '../LazyImage'
 
 const Container = glamorous.div(({ disabled }) => ({
   position: 'relative',
@@ -31,15 +33,12 @@ const DropMat = glamorous.div(({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  flexDirection: 'column',
   background: isDragOver ? dropZoneActiveBgColor : 'transparent',
   transition: 'background 0.4s ease-out'
 }))
 
 export default class DropZone extends PureComponent {
-  state = {
-    isDragOver: false
-  }
-
   static propTypes = {
     disabled: PropTypes.bool,
     title: PropTypes.string,
@@ -51,6 +50,16 @@ export default class DropZone extends PureComponent {
     onDrop: PropTypes.func,
     onFileSuccess: PropTypes.func,
     onFileError: PropTypes.func
+  }
+
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      isDragOver: false
+    }
+
+    this.onDrop = this.onDrop.bind(this)
   }
 
   composeHandlers = (handler) => {
@@ -101,7 +110,7 @@ export default class DropZone extends PureComponent {
     }
   }
 
-  onDrop = (evt) => {
+  async onDrop (evt) {
     evt.preventDefault()
 
     const {
@@ -111,23 +120,14 @@ export default class DropZone extends PureComponent {
       onFileError
     } = this.props
 
-    handleFiles(evt, allowedTypes)
-      .then((files) => {
-        if (onDrop) {
-          onDrop(files)
-        }
-
-        if (onFileSuccess) {
-          onFileSuccess(files)
-        }
-      })
-      .catch((error) => {
-        consoleError(error)
-
-        if (onFileError) {
-          onFileError(error)
-        }
-      })
+    try {
+      const files = await handleFiles(evt, allowedTypes)
+      onDrop && onDrop(files)
+      onFileSuccess && onFileSuccess(files)
+    } catch (error) {
+      consoleError(error)
+      onFileError && onFileError(error)
+    }
 
     if (this.state.isDragOver) {
       this.setState({ isDragOver: false })
@@ -151,7 +151,11 @@ export default class DropZone extends PureComponent {
           onDragLeave={this.composeHandlers(this.onDragLeave)}
           onDrop={this.composeHandlers(this.onDrop)}
         >
-          <Title>
+          <Div maxWidth='80px' marginBottom='20px'>
+            <LazyImage src={uploadImg} />
+          </Div>
+
+          <Title type='h2'>
             Drop here
           </Title>
         </DropMat>
