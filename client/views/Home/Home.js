@@ -7,9 +7,13 @@ import { Container, Row, Col } from 'react-grid-system'
 import Title from '../../components/Typography/Title'
 import glamorous from 'glamorous'
 
-const StyledRow = glamorous(Row)({
-  marginBottom: '20px'
-})
+const StyledRow = glamorous(Row)(({ theme: { mobileQuery } }) => ({
+  marginBottom: '30px',
+
+  [mobileQuery]: {
+    marginBottom: '20px'
+  }
+}))
 
 const StyledCol = glamorous(Col)(({ theme: { mobileQuery } }) => ({
   [mobileQuery]: {
