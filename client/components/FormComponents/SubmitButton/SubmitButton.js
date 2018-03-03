@@ -4,14 +4,14 @@ import Spinner from '../../Common/Loaders/Spinner'
 
 export default class SubmitButton extends Component {
   render () {
-    const { children, submitting } = this.props
+    const { children, submitting, disabled } = this.props
 
     return (
-      <Button type='submit'>
+      <Button type='submit' disabled={disabled}>
         {
           submitting
-          ? <Spinner />
-          : children
+            ? <Spinner />
+            : children
         }
       </Button>
     )

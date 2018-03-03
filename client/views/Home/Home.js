@@ -14,7 +14,7 @@ export default class Home extends Component {
     return (
       <Wrapper className='home'>
         <Modal open size='lg'>
-          <GameSignUpForm />
+          <GameSignUpForm onSubmit={() => new Promise((resolve) => setTimeout(() => resolve(), 2000))} />
         </Modal>
       </Wrapper>
     )

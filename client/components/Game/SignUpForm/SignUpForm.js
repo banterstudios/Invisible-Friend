@@ -79,7 +79,9 @@ export default class SignUpForm extends PureComponent {
           <FormGroup>
             <div className='row'>
               <div className='col-md-4 offset-md-4'>
-                <SubmitButton submitting={submitting}>
+                <SubmitButton
+                  submitting={submitting}
+                >
                   Submit
                 </SubmitButton>
               </div>
