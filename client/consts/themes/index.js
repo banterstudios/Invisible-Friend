@@ -1,6 +1,7 @@
 const COLORS = require('./colors')
 const TYPOG = require('./typography')
 const MEDIA_QUERIES = require('./mediaQueries')
+const BREAK_POINTS = require('./breakpoints')
 const { rgba } = require('polished')
 
 module.exports = {
@@ -79,5 +80,8 @@ module.exports = {
   loaderPrimaryBg: COLORS.white,
 
   // Media Queries
-  ...MEDIA_QUERIES
+  ...MEDIA_QUERIES,
+
+  // Breakpoints
+  ...BREAK_POINTS
 }

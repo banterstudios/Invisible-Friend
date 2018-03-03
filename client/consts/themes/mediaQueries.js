@@ -1,10 +1,10 @@
 const breakpoints = require('./breakpoints')
 
-const createMinWidth = (value = 0) => (
+const createMinWidth = (value) => (
   `(min-width: ${value}px)`
 )
 
-const createMaxWidth = (value = 0) => (
+const createMaxWidth = (value) => (
   (typeof value === 'number') ? ` and (max-width: ${value}px)` : ''
 )
 
