@@ -6,6 +6,7 @@ import glamorous from 'glamorous'
 import { reduxForm, Field } from 'redux-form'
 import PropTypes from 'prop-types'
 import SubmitButton from '../../FormComponents/SubmitButton'
+import { Redirect } from 'react-router'
 
 const StyledCol = glamorous.div(({ theme: { mobileQuery } }) => ({
   [mobileQuery]: {
@@ -24,11 +25,13 @@ const Form = glamorous.form({
 export default class SignUpForm extends PureComponent {
   static propTypes = {
     handleSubmit: PropTypes.func,
-    submitting: PropTypes.bool
+    submitting: PropTypes.bool,
+    submitSucceeded: PropTypes.bool,
+    redirectUrl: PropTypes.string
   }
 
   render () {
-    const { handleSubmit, submitting } = this.props
+    const { handleSubmit, submitting, submitSucceeded, redirectUrl } = this.props
 
     return (
       <Form onSubmit={handleSubmit}>
@@ -88,6 +91,7 @@ export default class SignUpForm extends PureComponent {
             </div>
           </FormGroup>
         </div>
+        { submitSucceeded && <Redirect push to={redirectUrl} /> }
       </Form>
     )
   }

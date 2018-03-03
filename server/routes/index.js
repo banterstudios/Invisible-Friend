@@ -46,7 +46,8 @@ const controller = (req, res) => {
 }
 
 router.get([
-  '/'
+  '/',
+  '/game/:id'
 ], controller)
 
 module.exports = router

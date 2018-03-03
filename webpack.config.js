@@ -45,7 +45,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/build'),
     filename: 'js/app.js',
-    publicPath: '/static'
+    publicPath: '/static/'
   },
   resolveLoader: {
     moduleExtensions: ['-loader']
