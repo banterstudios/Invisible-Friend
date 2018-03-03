@@ -4,7 +4,10 @@ import glamorous, { Div } from 'glamorous'
 import Title from '../../Typography/Title'
 import { handleFiles } from '../../../utils/fileUtils'
 import { error as consoleError } from '../../../utils/log'
-import { upload as uploadImg } from '../../../consts/images'
+import {
+  upload as uploadImg,
+  uploadSuccess as uploadSuccessImg
+} from '../../../consts/images'
 import LazyImage from '../LazyImage'
 
 const Container = glamorous.div(({ disabled }) => ({
@@ -17,23 +20,26 @@ const Container = glamorous.div(({ disabled }) => ({
 
 const DropMat = glamorous.div(({
   isDragOver,
+  hasFiles,
   theme: {
     dropZoneBorderColor,
-    dropZoneActiveBgColor
+    dropZoneHoverBgColor,
+    dropZoneSuccessBorderColor,
+    dropZoneSuccessBgColor
   }
 }) => ({
   position: 'relative',
   width: '100%',
   maxWidth: '750px',
   padding: '10px',
-  border: `2px dashed ${dropZoneBorderColor}`,
+  border: `2px dashed ${(hasFiles && !isDragOver) ? dropZoneSuccessBorderColor : dropZoneBorderColor}`,
   minHeight: '200px',
   margin: '0 auto',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   flexDirection: 'column',
-  background: isDragOver ? dropZoneActiveBgColor : 'transparent',
+  background: (isDragOver ? dropZoneHoverBgColor : hasFiles ? dropZoneSuccessBgColor : 'transparent'),
   transition: 'background 0.4s ease-out'
 }))
 
@@ -41,14 +47,17 @@ export default class DropZone extends PureComponent {
   static propTypes = {
     disabled: PropTypes.bool,
     title: PropTypes.string,
+    successTitle: PropTypes.string,
     allowedTypes: PropTypes.arrayOf(PropTypes.string),
     onDragEnter: PropTypes.func,
     onDragLeave: PropTypes.func,
     onDragOver: PropTypes.func,
     onDragStart: PropTypes.func,
     onDrop: PropTypes.func,
+    onClick: PropTypes.func,
     onFileSuccess: PropTypes.func,
-    onFileError: PropTypes.func
+    onFileError: PropTypes.func,
+    hasFiles: PropTypes.bool
   }
 
   static defaultProps = {
@@ -137,8 +146,20 @@ export default class DropZone extends PureComponent {
     }
   }
 
+  onClick = () => {
+    if (this.inputRef) {
+      this.inputRef.click()
+    }
+
+    if (this.props.onClick) {
+      this.props.onClick()
+    }
+  }
+
+  addInputRef = (ref) => (this.inputRef = ref)
+
   render () {
-    const { disabled, title } = this.props
+    const { disabled, title, successTitle, hasFiles, allowedTypes } = this.props
     const { isDragOver } = this.state
 
     return (
@@ -147,7 +168,9 @@ export default class DropZone extends PureComponent {
         aria-disabled={disabled}
       >
         <DropMat
+          hasFiles={hasFiles}
           isDragOver={isDragOver}
+          onClick={this.composeHandlers(this.onClick)}
           onDragStart={this.composeHandlers(this.onDragStart)}
           onDragEnter={this.composeHandlers(this.onDragEnter)}
           onDragOver={this.composeHandlers(this.onDragOver)}
@@ -155,13 +178,26 @@ export default class DropZone extends PureComponent {
           onDrop={this.composeHandlers(this.onDrop)}
         >
           <Div maxWidth='80px' marginBottom='20px'>
-            <LazyImage src={uploadImg} />
+            <LazyImage src={(hasFiles && !isDragOver) ? uploadSuccessImg : uploadImg} />
           </Div>
 
           <Title type='h2' css={{ textAlign: 'center' }}>
-            {title}
+            {
+              (hasFiles && !isDragOver && successTitle) ? (
+                successTitle
+              ) : title
+            }
           </Title>
         </DropMat>
+        <input
+          accept={allowedTypes.join(',')}
+          ref={this.addInputRef}
+          onChange={this.composeHandlers(this.onDrop)}
+          type='file'
+          style={{ display: 'none' }}
+          autoComplete='off'
+          hidden
+        />
       </Container>
     )
   }

@@ -1,8 +1,8 @@
 import update from 'immutability-helper'
 
-export const SHOW_LOGIN_POPUP = '@login/SHOW_LOGIN_POPUP'
-export const HIDE_LOGIN_POPUP = '@login/HIDE_LOGIN_POPUP'
-export const LOGGED_IN = '@login/LOGGED_IN'
+export const SHOW_LOGIN_POPUP = '@loginModule/SHOW_LOGIN_POPUP'
+export const HIDE_LOGIN_POPUP = '@loginModule/HIDE_LOGIN_POPUP'
+export const LOGGED_IN = '@loginModule/LOGGED_IN'
 
 export const logIn = () => ({
   type: LOGGED_IN,

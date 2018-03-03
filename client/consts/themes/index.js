@@ -63,7 +63,9 @@ module.exports = {
 
   // Drop Zones
   dropZoneBorderColor: COLORS.carrotOrange,
-  dropZoneActiveBgColor: rgba(COLORS.carrotOrange, 0.2),
+  dropZoneHoverBgColor: rgba(COLORS.carrotOrange, 0.2),
+  dropZoneSuccessBorderColor: COLORS.parisGreen,
+  dropZoneSuccessBgColor: rgba(COLORS.parisGreen, 0.2),
 
   // font size
   fontSizeTitle: '45px',

@@ -32,7 +32,7 @@ export const handleFiles = (e, allowedFileTypes = []) => {
     // If any of the files type is not allowed, then exit.
     if (allowedFileTypes.length) {
       for (let i = 0, len = files.length; i < len; i++) {
-        if (!~allowedFileTypes.indexOf(files[i].type)) {
+        if (!allowedFileTypes.includes(files[i].type)) {
           const errorMsg = 'File type is not within the correct boundaries... Please check allowedFileTypes'
           return reject(errorMsg)
         }
@@ -40,6 +40,6 @@ export const handleFiles = (e, allowedFileTypes = []) => {
     }
 
     // Return the files.
-    return resolve(files)
+    return resolve([ ...files ])
   })
 }

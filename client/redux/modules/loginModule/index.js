@@ -1,4 +1,4 @@
-import login, { submitLoginForm, logIn, logOut } from './login'
+import login, { submitLoginForm, logIn, logOut } from './loginModule'
 
 export {
   submitLoginForm,

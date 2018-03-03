@@ -21,7 +21,11 @@ if (isDev) {
     return createStore(
       reducers,
       initialState,
-      composeEnhancers(applyMiddleware(immutableStateInvariant(), thunkMiddleware))
+      composeEnhancers(applyMiddleware(immutableStateInvariant({
+        ignore: [
+          'form.gameSignUpForm'
+        ]
+      }), thunkMiddleware))
     )
   }
 } else {
