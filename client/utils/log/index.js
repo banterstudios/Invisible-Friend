@@ -1,8 +1,8 @@
 import log, { error, warn } from './log'
 
 export {
-  error,
-  warn,
+  error as errorLog,
+  warn as warnLog,
   log
 }
 

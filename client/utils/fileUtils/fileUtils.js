@@ -1,3 +1,5 @@
+import { errorLog } from '../log'
+
 export const handleFiles = (e, allowedFileTypes = []) => {
   return new Promise((resolve, reject) => {
     // check the allowedFiletypes is an instance of an array
@@ -6,7 +8,7 @@ export const handleFiles = (e, allowedFileTypes = []) => {
       try {
         throw new TypeError(errorMsg)
       } catch (e) {
-        console && console.log(`${e}: ${errorMsg}`)
+        errorLog(`${e}: ${errorMsg}`)
       }
       return reject(errorMsg)
     }
