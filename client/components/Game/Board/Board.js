@@ -70,7 +70,11 @@ export default class Board extends Component {
   render () {
     return (
       <StyledBoard>
-        <SoundManager />
+        <SoundManager
+          loop
+          status='sound_start'
+          url='https://s3-us-west-2.amazonaws.com/s.cdpn.io/355309/G4.mp3'
+        />
       </StyledBoard>
     )
   }
