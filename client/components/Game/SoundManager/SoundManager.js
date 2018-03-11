@@ -23,12 +23,14 @@ export default class SoundManager extends PureComponent {
       SOUND_START,
       SOUND_STOP,
       SOUND_PAUSE
-    ]).isRequired
+    ]).isRequired,
+    volume: PropTypes.number
   }
 
   static defaultProps = {
     status: SOUND_START,
-    loop: false
+    loop: false,
+    volume: 1
   }
 
   constructor (props) {
@@ -36,6 +38,7 @@ export default class SoundManager extends PureComponent {
 
     this.audioCtx = getAudioContext()
     this.sound = null
+    this.gainNode = null
     this.createSound = this.createSound.bind(this)
   }
 
@@ -49,7 +52,7 @@ export default class SoundManager extends PureComponent {
   }
 
   async createSound () {
-    const { url, loop } = this.props
+    const { url, loop, volume } = this.props
     const { audioCtx } = this
 
     if (!url) {
@@ -61,8 +64,11 @@ export default class SoundManager extends PureComponent {
       this.sound = audioCtx.createBufferSource()
 
       audioCtx.decodeAudioData(bufferedResponse, (decodedData) => {
+        this.gainNode = audioCtx.createGain()
+        this.gainNode.gain.value = volume
+        this.gainNode.connect(audioCtx.destination)
         this.sound.buffer = decodedData
-        this.sound.connect(audioCtx.destination)
+        this.sound.connect(this.gainNode)
         this.sound.start(0)
         this.sound.loop = loop
       })
@@ -71,14 +77,32 @@ export default class SoundManager extends PureComponent {
     }
   }
 
-  componentWillReceiveProps ({ status }) {
+  updateVolume = (volume) => {
+    if (!this.gainNode) {
+      return false
+    }
+
+    this.gainNode.gain.value = volume
+  }
+
+  componentWillReceiveProps ({ status, volume }) {
     if (status !== this.props.status) {
       // do something
+    }
+
+    if (volume !== this.props.volume) {
+      this.updateVolume(volume)
     }
   }
 
   componentWillUnmount () {
-    this.sound.stop()
+    if (!this.sound) {
+      return false
+    }
+
+    this.sound.stop(0)
+    this.sound = null
+    this.gainNode = null
   }
 
   render () {
