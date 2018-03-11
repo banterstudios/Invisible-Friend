@@ -14,6 +14,9 @@ module.exports = {
   colorTextHighlight: COLORS.carrotOrange,
   colorTextBody: COLORS.wenge,
 
+  // Progress
+  primaryProgressColor: COLORS.carrotOrange,
+
   // CTA
   ctaPrimary: COLORS.wenge,
   ctaHighlight: COLORS.carrotOrange,

@@ -14,6 +14,8 @@ import staticRoutes from './routes'
 
 import isDev from 'isdev'
 
+import { errorMessage } from './utils/messages'
+
 const port = process.env.PORT || 3100
 
 const app = express()
@@ -58,7 +60,7 @@ app.engine('handlebars',
 
 app.use(bodyParser.json())
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // view engine setup
 app.set('views', path.join(__dirname, '../build/views'))
@@ -81,10 +83,10 @@ app.use((req, res, next) => {
 // Error handling
 app.use((err, req, res, next) => {
   res.status(err.status || 500)
-  res.json({
+  res.json(errorMessage({
     message: err,
     error: isDev ? err : {}
-  })
+  }))
 })
 
 app.listen(port)
