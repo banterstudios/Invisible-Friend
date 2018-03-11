@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import glamorous from 'glamorous'
 import PropTypes from 'prop-types'
+import { createPortal } from 'react-dom'
 
 const StyledProgressBar = glamorous.div(({
   theme: {
@@ -15,8 +16,11 @@ const StyledProgressBar = glamorous.div(({
   height: 3,
   backgroundColor: primaryProgressColor,
   transform: `scale3d(${progress / 100}, 1, 1)`,
-  transformOrigin: '0 0'
+  transformOrigin: '0 0',
+  zIndex: 9999
 }))
+
+const rootElem = process.browser ? document.getElementById('ajax-progress-root') : null
 
 export default class AjaxProgressBar extends PureComponent {
   static propTypes = {
@@ -28,8 +32,8 @@ export default class AjaxProgressBar extends PureComponent {
   }
 
   render () {
-    return (
-      <StyledProgressBar className='ajax-progress-bar' { ...this.props } />
-    )
+    return rootElem ? (
+      createPortal(<StyledProgressBar className='ajax-progress-bar' { ...this.props } />, rootElem)
+    ) : null
   }
 }
