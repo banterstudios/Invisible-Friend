@@ -7,5 +7,6 @@ module.exports = {
   gunMetal: '#272e38',
   platinum: '#e6eae9',
   sandyTaupe: '#A4791F',
-  parisGreen: '#53D379'
+  parisGreen: '#53D379',
+  tractorRed: '#ff1133'
 }

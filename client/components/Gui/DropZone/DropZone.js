@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import glamorous, { Div } from 'glamorous'
 import Title from '../../Typography/Title'
 import { handleFiles } from '../../../utils/fileUtils'
-import { error as consoleError } from '../../../utils/log'
+import { errorLog } from '../../../utils/log'
 import {
   upload as uploadImg,
   uploadSuccess as uploadSuccessImg
@@ -40,7 +40,7 @@ const DropMat = glamorous.div(({
   justifyContent: 'center',
   flexDirection: 'column',
   background: (isDragOver ? dropZoneHoverBgColor : hasFiles ? dropZoneSuccessBgColor : 'transparent'),
-  transition: 'background 0.4s ease-out'
+  transition: 'background 0.4s ease-out, border 0.4s ease-out'
 }))
 
 export default class DropZone extends PureComponent {
@@ -137,7 +137,7 @@ export default class DropZone extends PureComponent {
       onDrop && onDrop(files)
       onFileSuccess && onFileSuccess(files)
     } catch (error) {
-      consoleError(error)
+      errorLog(error)
       onFileError && onFileError(error)
     }
 

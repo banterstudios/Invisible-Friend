@@ -17,7 +17,7 @@ const StyledProgressBar = glamorous.div(({
   backgroundColor: primaryProgressColor,
   transform: `scale3d(${progress / 100}, 1, 1)`,
   transformOrigin: '0 0',
-  transition: 'transform .4s ease-out',
+  transition: 'transform .25s ease-out',
   zIndex: 9999
 }))
 
