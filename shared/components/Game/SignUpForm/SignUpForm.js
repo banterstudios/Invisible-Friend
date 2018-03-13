@@ -7,6 +7,7 @@ import { reduxForm, Field } from 'redux-form'
 import PropTypes from 'prop-types'
 import SubmitButton from '../../FormComponents/SubmitButton'
 import { Redirect } from 'react-router'
+import { allowedImageTypes, allowedAudioTypes } from '../../../consts/forms/gameSignUpForm'
 
 const StyledCol = glamorous.div(({ theme: { mobileQuery } }) => ({
   [mobileQuery]: {
@@ -64,7 +65,7 @@ export default class SignUpForm extends PureComponent {
                   title='Drop your mates face here'
                   successTitle='We now have your mates head'
                   name='imageDropZone'
-                  allowedTypes={['image/png', 'image/gif', 'image/jpg', 'image/jpeg']}
+                  allowedTypes={allowedImageTypes}
                 />
               </StyledCol>
               <div className='col-md-6'>
@@ -73,7 +74,7 @@ export default class SignUpForm extends PureComponent {
                   title='Drop your best voice here'
                   successTitle='We have your voice... but damn really?'
                   name='audioDropZone'
-                  allowedTypes={['audio/mp3', 'audio/mpeg3', 'audio/ogg', 'audio/mpeg', 'audio/wav']}
+                  allowedTypes={allowedAudioTypes}
                 />
               </div>
             </div>

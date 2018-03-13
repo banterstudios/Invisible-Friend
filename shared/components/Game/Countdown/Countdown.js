@@ -69,7 +69,7 @@ export default class Countdown extends PureComponent {
 
     return (
       <div>
-        <p style={{ fontSize: '24px' }}>{ seconds }</p>
+        <p style={{ fontSize: '24px', margin: 0 }}>{ seconds }</p>
       </div>
     )
   }

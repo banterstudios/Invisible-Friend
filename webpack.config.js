@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
-const SCSSVars = require(path.resolve(__dirname, 'client/consts/themes/index.js'))
+const SCSSVars = require(path.resolve(__dirname, 'shared/consts/themes/index.js'))
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: path.join(__dirname, '/server/views/index.handlebars'),
@@ -19,10 +19,10 @@ const HTMLWebpackHardDiskPlugin = new HtmlWebpackHarddiskPlugin({
 })
 
 const CopyWebpackPluginConfig = new CopyWebpackPlugin([{
-  from: 'client/assets/images/',
+  from: 'shared/assets/images/',
   to: 'assets/images/'
 }, {
-  from: 'client/assets/fonts/',
+  from: 'shared/assets/fonts/',
   to: 'assets/fonts/'
 }])
 
@@ -39,8 +39,8 @@ module.exports = {
     'babel-polyfill',                                                                                                                                                                                                                                       
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
-    './client/index.js',
-    './client/styles/index.scss'
+    './shared/index.js',
+    './shared/styles/index.scss'
   ],
   output: {
     path: path.join(__dirname, '/build'),
@@ -97,7 +97,7 @@ module.exports = {
         loader: 'file-loader',
         query: {
           name: 'assets/[path][name].[ext]',
-          context: './client/assets'
+          context: './shared/assets'
         }
       }
     ]

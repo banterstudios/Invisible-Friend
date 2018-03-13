@@ -5,9 +5,9 @@ import inView from './InView'
 const MockComponent = () => (<div />)
 
 jest.useFakeTimers()
-jest.mock('client/utils/domUtils/domUtils.js')
+jest.mock('shared/utils/domUtils/domUtils.js')
 
-const { isElemInView } = require('client/utils/domUtils/domUtils.js')
+const { isElemInView } = require('shared/utils/domUtils/domUtils.js')
 
 isElemInView.mockImplementation(() => true)
 

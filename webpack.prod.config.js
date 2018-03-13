@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const SCSSVars = require(path.resolve(__dirname, 'client/consts/themes/index.js'))
+const SCSSVars = require(path.resolve(__dirname, 'shared/consts/themes/index.js'))
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: path.join(__dirname, '/server/views/index.handlebars'),
@@ -26,7 +26,7 @@ const cleanWebpackBuild = new CleanWebpackPlugin(['build'], {
 })
 
 const CopyWebpackPluginConfig = new CopyWebpackPlugin([{
-  from: 'client/assets/images/',
+  from: 'shared/assets/images/',
   to: 'assets/images/'
 }])
 
@@ -41,8 +41,8 @@ const filteredScssVars = Object.entries(SCSSVars).reduce((obj, [key, value]) => 
 module.exports = {
   entry: [
     'babel-polyfill',
-    './client/index.js',
-    './client/styles/index.scss'
+    './shared/index.js',
+    './shared/styles/index.scss'
   ],
   output: {
     path: path.join(__dirname, '/build'),
@@ -93,7 +93,7 @@ module.exports = {
         loader: 'file-loader',
         query: {
           name: 'assets/[path][name].[hash].[ext]',
-          context: './client/assets'
+          context: './shared/assets'
         }
       }
     ]

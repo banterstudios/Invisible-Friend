@@ -8,9 +8,9 @@ import ReactDOMServer from 'react-dom/server'
 
 import { StaticRouter } from 'react-router'
 
-import App from '../../../client/components/App'
+import App from '../../../shared/components/App'
 
-import { configureStore } from '../../../client/redux/store'
+import { configureStore } from '../../../shared/redux/store'
 
 import serializeJS from 'serialize-javascript'
 

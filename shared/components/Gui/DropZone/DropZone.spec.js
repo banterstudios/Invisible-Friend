@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import DropZone from './DropZone'
 
-describe('client/components/Gui/DropZone', () => {
+describe('shared/components/Gui/DropZone', () => {
   describe('Given this component', () => {
     describe('When it is rendered', () => {
       it('should exist', () => {
