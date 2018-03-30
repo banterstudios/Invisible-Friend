@@ -8,5 +8,6 @@ module.exports = {
   platinum: '#e6eae9',
   sandyTaupe: '#A4791F',
   parisGreen: '#53D379',
-  tractorRed: '#ff1133'
+  tractorRed: '#ff1133',
+  jellyBean: '#D75350'
 }

@@ -1,7 +1,3 @@
-import submitGameForm, { gameFormMulterUpload } from './submitGameForm'
-
-export {
-  gameFormMulterUpload
-}
+import submitGameForm from './submitGameForm'
 
 export default submitGameForm

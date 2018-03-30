@@ -30,7 +30,10 @@ module.exports = {
   activeStatusColor: COLORS.parisGreen,
 
   // Messages
-  messagePrimaryColor: COLORS.sandyTaupe,
+  messageWarningColor: COLORS.carrotOrange,
+  messageWarningBgColor: rgba(COLORS.carrotOrange, 0.2),
+  messageErrorColor: COLORS.white,
+  messageErrorBgColor: COLORS.jellyBean,
 
   // Input
   inputHighlight: COLORS.sandyTaupe,
