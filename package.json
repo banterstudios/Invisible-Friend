@@ -9,6 +9,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development nodemon --watch server --harmony ./server",
     "production": "cross-env NODE_ENV=production webpack --progress --color --config webpack.prod.config.js",
+    "start:local:db": "mongod",
     "test:jest:watch": "jest --watch",
     "test:jest": "jest"
   },
