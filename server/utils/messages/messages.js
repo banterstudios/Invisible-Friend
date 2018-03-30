@@ -1,4 +1,4 @@
-import { SUCCESS, ERROR } from '../../consts'
+import { SUCCESS, ERROR } from '../../../shared/consts/codes'
 
 export const successMessage = ({ data = {} }) => ({
   status: SUCCESS,

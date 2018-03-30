@@ -51,8 +51,8 @@ export const dataToFormData = (data) => (
   Object.entries(data).reduce((formData, [ name, value ]) => {
     if (value) {
       if (isArray(value)) {
-        for (let data in value) {
-          formData.append(name, data)
+        for (let i = 0, len = value.length; i < len; i++) {
+          formData.append(name, value[i])
         }
       } else {
         formData.append(name, value)

@@ -7,3 +7,4 @@ npm-debug.log
 yarn.lock
 .env
 .DS_Store
+server/uploads/tmp

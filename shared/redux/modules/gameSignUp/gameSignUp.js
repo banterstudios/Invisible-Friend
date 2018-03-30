@@ -1,21 +1,26 @@
 import { SubmissionError } from 'redux-form'
 import { dataToFormData } from '../../../utils/fileUtils'
+import { POST } from '../../../api/request'
 
 // Action Types
 export const SUBMIT_FORM = '@gameSignUpModule/SUBMIT_FORM'
 
 // Async Redux form fetch
-export const submitForm = (data) => {
-  return fetch('http://localhost:8080/api/submitGameForm', {
-    method: 'post',
+export const submitForm = (data) => (
+  POST({
+    url: 'http://localhost:8080/api/submitGameForm',
     body: dataToFormData(data)
-  }).then((res) => res.json())
+  })
     .then((payload) => {
       return Promise.resolve(payload)
-    }).catch((errors) => {
-      throw new SubmissionError({ errors })
     })
-}
+    .catch(({ error: { name, reason }, message }) => {
+      throw new SubmissionError({
+        _error: message,
+        [name]: reason
+      })
+    })
+)
 
 // Reducers
 const initialState = {}

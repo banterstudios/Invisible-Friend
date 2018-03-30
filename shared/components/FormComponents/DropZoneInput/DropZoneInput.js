@@ -11,6 +11,6 @@ export default (props) => (
       hasFiles={!!props.input.value}
       onDrop={(filesToUpload, e) => (props.input.onChange(filesToUpload))}
     />
-    {props.touched && ((props.error && <FormMessage type='error'>{props.error}</FormMessage>) || (props.warning && <FormMessage type='warning'>{props.warning}</FormMessage>))}
+    {props.meta.touched && ((props.meta.error && <FormMessage type='error'>{props.meta.error}</FormMessage>) || (props.meta.warning && <FormMessage type='warning'>{props.meta.warning}</FormMessage>))}
   </Fragment>
 )
