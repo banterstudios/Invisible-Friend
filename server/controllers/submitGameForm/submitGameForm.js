@@ -1,28 +1,35 @@
 import multer from 'multer'
 import { successMessage, errorMessage } from '../../utils/messages'
 import { allowedImageTypes, allowedAudioTypes } from '../../../shared/consts/forms/gameSignUpForm'
+import path from 'path'
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.resolve(`../../uploads/tmp`))
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${file.fieldname}-${Date.now()}`)
+  }
+})
 
 const fileFilter = (req, { mimetype }, cb) => {
   if (allowedImageTypes.includes(mimetype) || allowedAudioTypes.includes(mimetype)) {
     return cb(null, true)
   }
 
-  return cb(null, false)
+  return cb(null, false, new Error('Only images or audio files are allowed!'))
 }
 
-const multerOptions = {
-  dest: '../../uploads/tmp/',
-  fileFilter
-}
+const upload = multer({ storage, fileFilter })
 
-const upload = multer(multerOptions).fields([{ name: 'picture', maxCount: 1 }, { name: 'audio', maxCount: 1 }])
+const gameFormMulterUpload = upload.fields([{ name: 'imageDropZone', maxCount: 1 }, { name: 'audioDropZone', maxCount: 1 }])
 
 export default (req, res) => {
-  upload(req, res, (error) => {
+  gameFormMulterUpload(req, res, (error) => {
     if (error) {
-      res.status(406).json(errorMessage({ message: 'Problem uploading files', error }))
-    } else {
-      res.status(200).json(successMessage({ data: {} }))
+      return res.status(400).json(errorMessage({ error, message: 'failed to upload' }))
     }
+
+    res.status(200).json(successMessage({ data: {} }))
   })
 }

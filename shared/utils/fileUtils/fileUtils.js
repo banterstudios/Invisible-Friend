@@ -1,4 +1,5 @@
 import { errorLog } from '../log'
+import { isArray } from '../objectUtils'
 
 export const handleFiles = (e, allowedFileTypes = []) => {
   return new Promise((resolve, reject) => {
@@ -45,3 +46,19 @@ export const handleFiles = (e, allowedFileTypes = []) => {
     return resolve([ ...files ])
   })
 }
+
+export const dataToFormData = (data) => (
+  Object.entries(data).reduce((formData, [ name, value ]) => {
+    if (value) {
+      if (isArray(value)) {
+        for (let data in value) {
+          formData.append(name, data)
+        }
+      } else {
+        formData.append(name, value)
+      }
+    }
+
+    return formData
+  }, new FormData())
+)

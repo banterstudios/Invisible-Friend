@@ -1,3 +1,4 @@
 export {
-  handleFiles
+  handleFiles,
+  dataToFormData
 } from './fileUtils'
