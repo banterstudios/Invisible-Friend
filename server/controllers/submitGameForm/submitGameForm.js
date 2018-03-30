@@ -1,6 +1,7 @@
 import multer from 'multer'
 import { successMessage, errorMessage } from '../../utils/messages'
 import { allowedImageTypes, allowedAudioTypes } from '../../../shared/consts/forms/gameSignUpForm'
+import { INVALID_AUDIO_TYPE, INVALID_IMAGE_TYPE } from '../../../shared/consts/forms'
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -38,7 +39,7 @@ export default (req, res) => {
       return res.status(400).json(errorMessage({
         error: {
           name: FIELDS.IMAGE_DROP_ZONE,
-          reason: 'Invalid image type. Please submit a valid image type.'
+          reason: INVALID_IMAGE_TYPE
         }
       }))
     }
@@ -47,7 +48,7 @@ export default (req, res) => {
       return res.status(400).json(errorMessage({
         error: {
           name: FIELDS.AUDIO_DROP_ZONE,
-          reason: 'Invalid audio type. Please submit a valid audio clip.'
+          reason: INVALID_AUDIO_TYPE
         }
       }))
     }
