@@ -11,7 +11,6 @@ export default class Home extends Component {
       <Wrapper className='home'>
         <Modal open size='lg'>
           <GameSignUpForm
-            onSubmit={() => new Promise((resolve) => setTimeout(() => resolve(), 2000))}
             redirectUrl='/game/madness'
           />
         </Modal>
