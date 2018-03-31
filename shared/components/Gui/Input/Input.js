@@ -6,17 +6,21 @@ import PropTypes from 'prop-types'
 
 import glamorous from 'glamorous'
 
-const Input = glamorous.input(({ theme: {
-  inputHighlight,
-  inputBg,
-  fontSizeText,
-  fontSecondary,
-  inputTextColor,
-  inputPlaceholderColor,
-  inputNormalBorderColor,
-  formBorderRadius
-} }) => ({
-  border: `1px solid transparent`,
+const Input = glamorous.input(({
+  theme: {
+    inputHighlight,
+    inputBg,
+    fontSizeText,
+    fontSecondary,
+    inputTextColor,
+    inputPlaceholderColor,
+    inputNormalBorderColor,
+    formBorderRadius,
+    inputSuccessBorderColor
+  },
+  error
+}) => ({
+  border: `1px solid ${error ? 'transparent' : inputSuccessBorderColor}`,
   borderRadius: formBorderRadius,
   padding: '15px',
   appearance: 'none',
@@ -30,7 +34,7 @@ const Input = glamorous.input(({ theme: {
   color: inputTextColor,
   '&:focus, &:active': {
     outline: 'none',
-    borderColor: inputHighlight
+    borderColor: error ? inputHighlight : inputSuccessBorderColor
   },
   '::placeholder': {
     color: inputPlaceholderColor

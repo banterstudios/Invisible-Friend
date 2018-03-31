@@ -39,8 +39,9 @@ module.exports = {
   inputHighlight: COLORS.sandyTaupe,
   inputNormalBorderColor: COLORS.wenge,
   inputBg: COLORS.gunMetal,
-  inputTextColor: COLORS.carrotOrange,
+  inputTextColor: COLORS.white,
   inputPlaceholderColor: COLORS.wenge,
+  inputSuccessBorderColor: COLORS.parisGreen,
 
   // Form components
   formBorderRadius: '2px',
