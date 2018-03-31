@@ -2,6 +2,7 @@ import multer from 'multer'
 import { successMessage, errorMessage } from '../../utils/messages'
 import { allowedImageTypes, allowedAudioTypes } from '../../../shared/consts/forms/gameSignUpForm'
 import { INVALID_AUDIO_TYPE, INVALID_IMAGE_TYPE } from '../../../shared/consts/forms'
+import gameSubmitFormModel from '../../models/submitGameForm'
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -53,8 +54,18 @@ export default (req, res) => {
       }))
     }
 
-    console.log(req.files)
+    const data = {
+      gameName: 'nick',
+      imageUrl: req.files[FIELDS.IMAGE_DROP_ZONE][0].path,
+      audioUrl: req.files[FIELDS.AUDIO_DROP_ZONE][0].path
+    }
 
-    res.status(200).json(successMessage({ data: {} }))
+    gameSubmitFormModel.create(data, (error, data) => {
+      if (error) {
+        return res.status(400).json(errorMessage({ message: 'failed to save details' }))
+      }
+
+      return res.status(200).json(successMessage({ data }))
+    })
   })
 }

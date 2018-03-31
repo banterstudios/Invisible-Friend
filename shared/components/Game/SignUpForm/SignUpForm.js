@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import Title from '../../Typography/Title'
 import FormGroup from '../../FormComponents/FormGroup'
+import TextInput from '../../FormComponents/TextInput'
 import DropZoneInput from '../../FormComponents/DropZoneInput'
 import glamorous from 'glamorous'
 import { reduxForm, Field } from 'redux-form'
@@ -54,6 +55,15 @@ export default class SignUpForm extends PureComponent {
                   Upload a picture of your mate and a sound clip of yourself and use that to determine where ya fucking mates head is at!
                 </Title>
               </div>
+            </div>
+          </FormGroup>
+
+          <FormGroup>
+            <div className='row'>
+              <Title type='h3'>
+                What's the name of your game?
+              </Title>
+              <Field component={TextInput} />
             </div>
           </FormGroup>
 
