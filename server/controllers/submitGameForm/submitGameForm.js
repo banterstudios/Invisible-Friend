@@ -1,7 +1,12 @@
 import multer from 'multer'
 import { successMessage, errorMessage } from '../../utils/messages'
 import { allowedImageTypes, allowedAudioTypes } from '../../../shared/consts/forms/gameSignUpForm'
-import { INVALID_AUDIO_TYPE, INVALID_IMAGE_TYPE } from '../../../shared/consts/forms'
+import {
+  INVALID_AUDIO_TYPE,
+  INVALID_IMAGE_TYPE,
+  INVALID_GAME_NAME,
+  FIELD_GAME_NAME_VALIDATION
+} from '../../../shared/consts/forms'
 import gameSubmitFormModel from '../../models/submitGameForm'
 
 const storage = multer.diskStorage({
@@ -23,7 +28,8 @@ const fileFilter = (req, { mimetype }, cb) => {
 
 const FIELDS = {
   IMAGE_DROP_ZONE: 'imageDropZone',
-  AUDIO_DROP_ZONE: 'audioDropZone'
+  AUDIO_DROP_ZONE: 'audioDropZone',
+  GAME_NAME: 'gameName'
 }
 
 const upload = multer({ storage: storage, fileFilter: fileFilter })
@@ -55,8 +61,17 @@ export default (req, res) => {
       }))
     }
 
+    if (!req.body[FIELDS.GAME_NAME] || FIELD_GAME_NAME_VALIDATION(req.body[FIELDS.GAME_NAME])) {
+      return res.status(400).json(errorMessage({
+        error: {
+          name: FIELDS.GAME_NAME,
+          reason: INVALID_GAME_NAME
+        }
+      }))
+    }
+
     const data = {
-      gameName: 'nick',
+      gameName: req.body[FIELDS.GAME_NAME],
       imageUrl: req.files[FIELDS.IMAGE_DROP_ZONE][0].path,
       audioUrl: req.files[FIELDS.AUDIO_DROP_ZONE][0].path
     }

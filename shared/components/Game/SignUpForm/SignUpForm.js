@@ -9,6 +9,7 @@ import PropTypes from 'prop-types'
 import SubmitButton from '../../FormComponents/SubmitButton'
 import { Redirect } from 'react-router'
 import { allowedImageTypes, allowedAudioTypes } from '../../../consts/forms/gameSignUpForm'
+import { FIELD_GAME_NAME_VALIDATION } from '../../../consts/forms'
 
 const StyledCol = glamorous.div(({ theme: { mobileQuery } }) => ({
   [mobileQuery]: {
@@ -65,8 +66,9 @@ export default class SignUpForm extends PureComponent {
                   What's the name of your game?
                 </Title>
               </div>
-              <div className='col-6 offset-3' style={{ marginTop: '20px' }}>
+              <div className='col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3' style={{ marginTop: '20px' }}>
                 <Field
+                  validate={[ FIELD_GAME_NAME_VALIDATION ]}
                   component={TextInput}
                   name='gameName'
                 />

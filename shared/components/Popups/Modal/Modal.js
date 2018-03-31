@@ -7,7 +7,7 @@ import FadeSlide from '../../Transitions/FadeSlide'
 import KEYCODE from '../../../consts/keycodes'
 import { isFunction } from '../../../utils/objectUtils'
 
-const Frame = glamorous.div(({ theme: { modalZIndex } }) => ({
+const Frame = glamorous.div(({ theme: { modalZIndex, minTabletQuery } }) => ({
   position: 'fixed',
   top: 0,
   left: 0,
@@ -18,7 +18,12 @@ const Frame = glamorous.div(({ theme: { modalZIndex } }) => ({
   padding: '20px',
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center'
+  alignItems: 'flex-start',
+  overflow: 'auto',
+  webkitOverflowScrolling: 'auto',
+  [minTabletQuery]: {
+    alignItems: 'center'
+  }
 }))
 
 const ContentWrapper = glamorous.div(({ size, theme: { mobileQuery } }) => {
