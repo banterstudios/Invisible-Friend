@@ -28,6 +28,7 @@ const FIELDS = {
 
 const upload = multer({ storage: storage, fileFilter: fileFilter })
 
+// ADD IN SUPPORT FOR TEXT -> GAMENAME
 const gameFormMulterUpload = upload.fields([{ name: FIELDS.IMAGE_DROP_ZONE, maxCount: 1 }, { name: FIELDS.AUDIO_DROP_ZONE, maxCount: 1 }])
 
 export default (req, res) => {

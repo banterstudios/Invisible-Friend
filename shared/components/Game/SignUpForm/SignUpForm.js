@@ -58,12 +58,19 @@ export default class SignUpForm extends PureComponent {
             </div>
           </FormGroup>
 
-          <FormGroup>
+          <FormGroup modifier='lg'>
             <div className='row'>
-              <Title type='h3'>
-                What's the name of your game?
-              </Title>
-              <Field component={TextInput} />
+              <div className='col-12'>
+                <Title type='h3' css={{ textAlign: 'center' }}>
+                  What's the name of your game?
+                </Title>
+              </div>
+              <div className='col-6 offset-3' style={{ marginTop: '20px' }}>
+                <Field
+                  component={TextInput}
+                  name='gameName'
+                />
+              </div>
             </div>
           </FormGroup>
 
