@@ -15,7 +15,7 @@ const TextInput = (props) => {
 
   return (
     <Div position='relative' width='100%'>
-      <Input {...input} error={touched && error} type={type} placeholder={placeholder} tabIndex={tabIndex} />
+      <Input {...input} type={type} placeholder={placeholder} tabIndex={tabIndex} />
       {touched && ((error && <FormMessage type='error'>{error}</FormMessage>) || (warning && <FormMessage type='warning'>{warning}</FormMessage>))}
     </Div>
   )

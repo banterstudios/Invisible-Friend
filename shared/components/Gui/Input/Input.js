@@ -15,12 +15,10 @@ const Input = glamorous.input(({
     inputTextColor,
     inputPlaceholderColor,
     inputNormalBorderColor,
-    formBorderRadius,
-    inputSuccessBorderColor
-  },
-  error
+    formBorderRadius
+  }
 }) => ({
-  border: `1px solid ${error ? 'transparent' : inputSuccessBorderColor}`,
+  border: `1px solid transparent`,
   borderRadius: formBorderRadius,
   padding: '15px',
   appearance: 'none',
@@ -34,7 +32,7 @@ const Input = glamorous.input(({
   color: inputTextColor,
   '&:focus, &:active': {
     outline: 'none',
-    borderColor: error ? inputHighlight : inputSuccessBorderColor
+    borderColor: inputHighlight
   },
   '::placeholder': {
     color: inputPlaceholderColor

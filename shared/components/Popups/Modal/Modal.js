@@ -20,7 +20,7 @@ const Frame = glamorous.div(({ theme: { modalZIndex, minTabletQuery } }) => ({
   justifyContent: 'center',
   alignItems: 'flex-start',
   overflow: 'auto',
-  webkitOverflowScrolling: 'auto',
+  WebkitOverflowScrolling: 'auto',
   [minTabletQuery]: {
     alignItems: 'center'
   }
