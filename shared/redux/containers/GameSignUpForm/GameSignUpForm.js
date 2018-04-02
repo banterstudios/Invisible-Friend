@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { submitForm } from '../../modules/gameSignUp'
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onSubmit: (event) => submitForm(event)
+  onSubmit: (event) => dispatch(submitForm(event))
 })
 
 export default connect(null, mapDispatchToProps)(SignUpForm)
