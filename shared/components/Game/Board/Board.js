@@ -76,13 +76,19 @@ export default class Board extends Component {
   handleClick = throttle(this.checkIfFound, THROTTLE_DURATION)
 
   render () {
+    const { game } = this.props
+
+    if (!game || !game.data) {
+      return null
+    }
+
     return (
       <StyledBoard>
         <SoundManager
           loop
           volume={this.state.volume}
           status={SOUND_START}
-          url='https://s3-us-west-2.amazonaws.com/s.cdpn.io/355309/G4.mp3'
+          url={game.data.audioUrl}
         />
       </StyledBoard>
     )
