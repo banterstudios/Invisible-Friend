@@ -10,10 +10,14 @@ import {
 } from '../../../shared/consts/forms'
 import gameSubmitFormModel from '../../models/submitGameForm'
 import { getExtension } from '../../utils/file'
+import fs from 'fs'
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'C:/Users/NickD/Documents/projects/Invisible-Friend/server/uploads/tmp')
+
+    fs.mkdir(`public/uploads`, () => {
+      cb(null, 'public/uploads')
+    })
   },
   filename: (req, { originalname, fieldname }, cb) => {
     cb(null, `${fieldname}-${Date.now()}.${getExtension(originalname)}`)
@@ -84,8 +88,8 @@ export default (req, res) => {
 
       const data = {
         gameName: req.body[FIELDS.GAME_NAME],
-        imageUrl: req.files[FIELDS.IMAGE_DROP_ZONE][0].path,
-        audioUrl: req.files[FIELDS.AUDIO_DROP_ZONE][0].path
+        imageUrl: `/${req.files[FIELDS.IMAGE_DROP_ZONE][0].path}`,
+        audioUrl: `/${req.files[FIELDS.AUDIO_DROP_ZONE][0].path}`
       }
 
       gameSubmitFormModel.create(data, (error, data) => {

@@ -5,6 +5,7 @@ import log from '../../../utils/log'
 import glamorous from 'glamorous'
 import SoundManager, { SOUND_START } from '../SoundManager'
 import { getEventDistance, randomBetween, getVolumeFromCoords } from '../../../utils/mathUtils'
+import FoundPicture from '../FoundPicture'
 
 const StyledBoard = glamorous.div({
   position: 'relative',
@@ -12,7 +13,7 @@ const StyledBoard = glamorous.div({
   height: '100vh'
 })
 
-const FIND_RADIUS = 40
+const FIND_RADIUS = 100
 const SOUND_THROTTLE_DURATION = 150
 const THROTTLE_DURATION = 50
 
@@ -21,7 +22,8 @@ export default class Board extends Component {
     super(props)
 
     this.state = {
-      volume: 1
+      volume: 0,
+      found: false
     }
 
     this.gameData = null
@@ -60,6 +62,7 @@ export default class Board extends Component {
 
   adjustSound = (event) => {
     const volume = getVolumeFromCoords(event, this.gameData)
+    console.log(volume)
     this.setState({ volume })
   }
 
@@ -67,6 +70,7 @@ export default class Board extends Component {
     const d = getEventDistance(event, this.gameData)
 
     if (d <= FIND_RADIUS) {
+      this.setState({ found: true })
       log('found ya!')
     }
   }
@@ -77,6 +81,7 @@ export default class Board extends Component {
 
   render () {
     const { game } = this.props
+    const { found, volume } = this.state
 
     if (!game || !game.data) {
       return null
@@ -86,10 +91,19 @@ export default class Board extends Component {
       <StyledBoard>
         <SoundManager
           loop
-          volume={this.state.volume}
+          volume={volume}
           status={SOUND_START}
           url={game.data.audioUrl}
         />
+        {
+          found ? (
+            <FoundPicture
+              posX={this.gameData.x}
+              posY={this.gameData.y}
+              src={game.data.imageUrl}
+            />
+          ) : null
+        }
       </StyledBoard>
     )
   }

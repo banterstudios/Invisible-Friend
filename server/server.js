@@ -37,6 +37,7 @@ app.set('view engine', 'handlebars')
 app.use(morgan('dev'))
 
 app.use('/static', express.static('build'))
+app.use('/public', express.static('public'))
 
 app.use('/', staticRoutes)
 
