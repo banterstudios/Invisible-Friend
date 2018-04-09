@@ -35,6 +35,7 @@ const filteredScssVars = Object.entries(SCSSVars).reduce((obj, [key, value]) => 
 }, {})
 
 module.exports = {
+  name: 'client',
   entry: [
     'babel-polyfill',                                                                                                                                                                                                                                       
     'react-hot-loader/patch',

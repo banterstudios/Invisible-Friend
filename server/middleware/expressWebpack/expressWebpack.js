@@ -1,26 +1,38 @@
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
-import webpackConfig from '../../../webpack.config'
+import webpackServerConfig from '../../../webpack.config.server'
+import webpackClientConfig from '../../../webpack.config'
 
 // Use this middleware to set up hot module reloading via webpack.
 export default (app) => {
-  const compiler = webpack(webpackConfig)
+  const compiler = webpack([webpackClientConfig, webpackServerConfig])
+  const clientCompiler = compiler.compilers.find(({ name }) => name === 'client')
   compiler.apply(new webpack.ProgressPlugin())
 
   app.use(webpackDevMiddleware(compiler, {
     hot: true,
-    filename: webpackConfig.output.filename,
+    filename: webpackClientConfig.output.filename,
     noInfo: true,
     stats: {
       colors: true
     },
     historyApiFallback: true,
-    publicPath: webpackConfig.output.publicPath
+    publicPath: webpackClientConfig.output.publicPath,
+    serverSideRender: true
   }))
 
-  app.use(webpackHotMiddleware(compiler, {
+  app.use(webpackHotMiddleware(clientCompiler, {
     log: console.log,
     heartbeat: 10 * 1000
   }))
+
+  compiler.plugin('done', () => {
+    Object.keys(require.cache).forEach((id) => {
+      // Only delete cache for files in server and shared folders
+      if (!/[/\\](node_modules|models)[/\\]/.test(id)) {
+        delete require.cache[id]
+      }
+    })
+  })
 }

@@ -5,7 +5,6 @@ import bodyParser from 'body-parser'
 import path from 'path'
 import morgan from 'morgan'
 import exphbs from 'express-handlebars'
-import staticRoutes from './routes'
 import isDev from 'isdev'
 import { errorMessage } from './utils/messages'
 
@@ -13,7 +12,7 @@ const port = process.env.PORT || 3100
 const app = express()
 
 if (isDev) {
-  require('./middleware/expressWebpack').expressWebpack(app)
+  require('./middleware/expressWebpack').default(app)
 }
 
 const handlebarsConfig = {
@@ -39,7 +38,9 @@ app.use(morgan('dev'))
 app.use('/static', express.static('build'))
 app.use('/public', express.static('public'))
 
-app.use('/', staticRoutes)
+app.use((req, res, next) => {
+  require('./routes').default(req, res, next)
+})
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -57,6 +58,8 @@ app.use((err, req, res, next) => {
   }))
 })
 
-app.listen(port)
+app.listen(port, () => {
+  console.log(`Listening on port: ${port}`)
+})
 
-module.exports = app
+export default app

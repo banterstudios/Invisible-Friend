@@ -1,3 +1,1 @@
-import FormMessage from './FormMessage'
-
-export default FormMessage
+export { default } from './FormMessage'

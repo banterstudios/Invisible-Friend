@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon --watch server --harmony ./server",
+    "start": "cross-env NODE_ENV=development node --harmony ./server",
     "production": "cross-env NODE_ENV=production webpack --progress --color --config webpack.prod.config.js",
     "start:local:db": "mongod",
     "test:jest:watch": "jest --watch",
@@ -82,6 +82,7 @@
     "style-loader": "^0.16.1",
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.11.2",
+    "webpack-node-externals": "^1.7.2",
     "webpack-validator": "^3.0.0",
     "write-file-webpack-plugin": "^4.2.0"
   },

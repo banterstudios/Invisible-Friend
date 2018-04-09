@@ -1,3 +1,1 @@
-import FoundPicture from './FoundPicture'
-
-export default FoundPicture
+export { default } from './FoundPicture'

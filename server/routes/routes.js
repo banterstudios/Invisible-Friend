@@ -8,4 +8,4 @@ router.get(['/', '/game/:id'], serverSideRender)
 
 router.post('/api/submitGameForm', submitGameForm)
 
-module.exports = router
+export default router

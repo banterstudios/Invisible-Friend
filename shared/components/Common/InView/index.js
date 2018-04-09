@@ -1,3 +1,1 @@
-import InView from './InView'
-
-export default InView
+export { default } from './InView'

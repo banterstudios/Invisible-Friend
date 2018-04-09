@@ -1,1 +1,1 @@
-export { default as expressWebpack } from './expressWebpack'
+export { default } from './expressWebpack'

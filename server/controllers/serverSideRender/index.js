@@ -1,3 +1,1 @@
-import serverSideRender from './serverSideRender'
-
-export default serverSideRender
+export { default } from './serverSideRender'

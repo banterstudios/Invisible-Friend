@@ -1,3 +1,1 @@
-import DropZoneInput from './DropZoneInput'
-
-export default DropZoneInput
+export { default } from './DropZoneInput'

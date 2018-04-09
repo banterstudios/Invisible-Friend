@@ -1,3 +1,1 @@
-import submitGameForm from './submitGameForm'
-
-export default submitGameForm
+export { default } from './submitGameForm'
